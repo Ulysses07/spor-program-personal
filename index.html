@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Spor Programı</title>
+<link rel="manifest" href="./manifest.webmanifest">
+<meta name="theme-color" content="#0b4dbb">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Spor Programı">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="apple-touch-icon" href="./icon.svg">
+<style>
+:root{--b:#0b4dbb;--b2:#eaf2ff;--bg:#f4f7fb;--c:#fff;--t:#111827;--m:#6b7280;--l:#dbe7f7;--g:#16a34a;--r:#dc2626;--s:0 10px 28px rgba(15,79,184,.12)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--t);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}header{background:linear-gradient(135deg,#073c94,#0b63da);color:white;padding:22px 16px 26px;border-radius:0 0 26px 26px;box-shadow:var(--s)}.wrap{max-width:920px;margin:auto;padding:0 14px}h1{margin:0;font-size:25px;letter-spacing:-.5px}.sub{opacity:.9;margin:7px 0 0;font-size:14px}.tabs,.days{display:flex;gap:9px;overflow:auto;padding:14px 0}.btn{border:1px solid var(--l);background:white;color:var(--t);border-radius:999px;padding:10px 13px;font-weight:800;white-space:nowrap;box-shadow:0 4px 14px #0000000a}.btn.active{background:var(--b);color:white;border-color:var(--b)}main{padding:14px 0 34px}.card{background:var(--c);border:1px solid var(--l);border-radius:20px;padding:15px;margin:12px 0;box-shadow:var(--s)}.hero{margin-top:-8px}.row{display:flex;justify-content:space-between;gap:10px;align-items:center}.muted{color:var(--m);font-size:13px}.pill{display:inline-flex;align-items:center;gap:6px;background:var(--b2);color:var(--b);border-radius:999px;padding:7px 10px;font-weight:900;font-size:12px}.progress{height:12px;background:#e5edf8;border-radius:99px;overflow:hidden;margin-top:10px}.bar{height:100%;background:linear-gradient(90deg,#0b4dbb,#22c55e);width:0%}.exercise{position:relative}.exHead{display:flex;gap:12px;align-items:flex-start}.num{min-width:34px;height:34px;border-radius:12px;background:var(--b);color:white;display:grid;place-items:center;font-weight:900}.exTitle{font-size:17px;font-weight:900;margin:0}.meta{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}.note{font-size:14px;line-height:1.4;margin:8px 0}.alts{font-size:13px;color:var(--m);line-height:1.35}.sets{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}.setBtn{border:1px solid var(--l);background:#f8fbff;border-radius:13px;padding:10px 6px;font-weight:900}.setBtn.done{background:#dcfce7;border-color:#86efac;color:#166534}.timerBox{display:none;margin-top:12px;padding:12px;border-radius:16px;background:#f8fbff;border:1px dashed #b8cbed}.timerBox.on{display:block}.timerTime{font-size:31px;font-weight:900;color:var(--b);letter-spacing:-1px}.timerBtns{display:flex;gap:8px;flex-wrap:wrap}.small{font-size:12px}.danger{color:var(--r);font-weight:800}.infoGrid{display:grid;grid-template-columns:1fr;gap:9px}.info{background:#f8fbff;border:1px solid var(--l);border-radius:16px;padding:11px;font-size:13px}.footer{padding:14px;text-align:center;color:var(--m);font-size:12px}@media(min-width:720px){.infoGrid{grid-template-columns:repeat(3,1fr)}.sets{grid-template-columns:repeat(6,1fr)}h1{font-size:34px}.sub{font-size:16px}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><h1>Bölgesel Antrenman Programı</h1><p class="sub">Kişisel spor takip app'i • 4/5 gün mod • set takibi • dinlenme sayacı</p></div></header>
+<div class="wrap">
+<nav class="tabs"><button class="btn active" id="mode4">4 Gün</button><button class="btn" id="mode5">5 Gün</button><button class="btn" id="reset">Bugünü Sıfırla</button></nav>
+<div class="days" id="days"></div>
+<main>
+<section class="card hero">
+ <div class="row"><div><div class="pill" id="goal">Yağ yakımı + kas koruma</div><h2 id="title" style="margin:10px 0 4px"></h2><div class="muted" id="subtitle"></div></div><div style="text-align:right"><div class="muted">İlerleme</div><div style="font-size:26px;font-weight:900;color:#0b4dbb" id="pct">0%</div></div></div>
+ <div class="progress"><div class="bar" id="bar"></div></div>
+</section>
+<section class="card"><div class="infoGrid"><div class="info"><b>Isınma</b><br>7–10 dk yürüyüş + ilk harekette 1–2 hafif set.</div><div class="info"><b>Dinlenme</b><br>Ana hareket 90–120 sn, izolasyon 45–75 sn.</div><div class="info"><b>Yoğunluk</b><br>Son 2 tekrar zor gelsin, form bozulmasın.</div></div></section>
+<section id="list"></section>
+<section class="card"><b>Kısa Not</b><p class="muted">Keskin omuz, diz, bel veya dirsek ağrısı olursa hareketi bırak. Mounjaro kullandığın gün enerjin düşükse ağırlığı %10–20 azalt.</p></section>
+</main>
+</div>
+<div class="footer">Spor Programı Personal • Kayıtlar bu cihazın tarayıcısında saklanır.</div>
+<script>
+const DATA=[
+{d:'Gün 1',t:'Göğüs + Triceps',s:'Süre: 70–90 dk',ex:[
+['Incline Machine Chest Press','4 x 10–12','Omuzları aşağıda tut, göğsü aç, kontrollü it.','Incline Dumbbell Press / Smith Incline Press',90,4],
+['Flat Dumbbell Press','3 x 10–12','Dirsekleri kontrollü indir, göğüste esneme hisset.','Machine Chest Press / Push-up',90,3],
+['Cable Chest Fly','3 x 12–15','Kollar hafif kırık, önde 1 sn göğsü sık.','Pec Deck / Dumbbell Fly',60,3],
+['Rope Triceps Pushdown','4 x 10–12','Dirsek sabit, omuz oynatma.','Straight Bar Pushdown / Tek Kol Cable Pushdown',60,4],
+['Overhead Cable Triceps Extension','3 x 12–15','Baş üstünden kontrollü aç-kapat.','Dumbbell Overhead Extension / Skull Crusher',60,3],
+['Eğimli Yürüyüş','15–20 dk','Hız 4.5–5.5, eğim 4–7.','Bisiklet / Eliptik',0,1]
+]},
+{d:'Gün 2',t:'Sırt + Biceps',s:'Süre: 70–90 dk',ex:[
+['Lat Pulldown','4 x 10–12','Barı göğse çek, kürek kemiklerini aşağı indir.','Assisted Pull-up / Band Pulldown',90,4],
+['Seated Cable Row','4 x 10–12','Belini yuvarlama, çekiş sonunda sırtı sık.','Chest Supported Dumbbell Row / Bent-over Dumbbell Row',90,4],
+['Chest Supported Row','3 x 10–12','Göğsü desteğe yasla, kollarla değil sırtla çek.','One-arm Dumbbell Row / T-Bar Row',90,3],
+['Straight Arm Pulldown','3 x 12–15','Dirsek hafif kırık, kanatları kullanarak aşağı bastır.','Dumbbell Pullover / Band Pulldown',60,3],
+['Face Pull','3 x 15','Halatı yüze çek, dirsekleri dışarı aç.','Reverse Pec Deck / Rear Delt Fly',60,3],
+['Dumbbell Biceps Curl','3 x 10–12','Vücudu sallama, kontrollü kaldır-indir.','Barbell Curl / Cable Curl',60,3],
+['Hammer Curl','3 x 12','Avuç içleri birbirine baksın, dirsek sabit kalsın.','Rope Hammer Curl / Cross-body Hammer Curl',60,3],
+['Eğimli Yürüyüş','15–25 dk','Hız 4.5–5.5, eğim 4–8.','Bisiklet / Eliptik',0,1]
+]},
+{d:'Gün 3',t:'Bacak + Karın',s:'Süre: 75–90 dk',ex:[
+['Leg Press','4 x 10–12','Dizleri içeri kapatma, belini pedden kaldırma.','Goblet Squat / Smith Squat',120,4],
+['Seated Leg Curl','4 x 12–15','Arka bacağı sık, ağırlığı savurma.','Lying Leg Curl / Romanian Deadlift',75,4],
+['Leg Extension','3 x 12–15','Yukarıda kısa sık, dizleri sert kilitleme.','Split Squat / Bodyweight Squat',75,3],
+['Goblet Squat','3 x 10–12','Göğüs dik, dizler ayak yönüne gitsin.','Smith Squat / Box Squat',90,3],
+['Standing Calf Raise','4 x 12–20','Yukarıda 1 sn sık, aşağıda esnet.','Seated Calf Raise / Step Calf Raise',60,4],
+['Cable Crunch','3 x 12–15','Karını içeri sık, belden değil karından bükül.','Crunch Machine / Floor Crunch',45,3],
+['Plank','3 x 25–45 sn','Kalçayı ne düşür ne aşırı yükselt.','Dead Bug / Knee Plank',45,3],
+['Hafif Kardiyo','10–15 dk','Bacak günü sonrası orta tempo yürüyüş.','Bisiklet / Eliptik',0,1]
+]},
+{d:'Gün 4',t:'Omuz + Kol',s:'Süre: 70–90 dk',ex:[
+['Machine Shoulder Press','4 x 10–12','Belini aşırı çukurlaştırma, kontrollü it.','Dumbbell Shoulder Press',90,4],
+['Dumbbell Lateral Raise','4 x 12–15','Boynu kasma, omuz hizasına kadar kaldır.','Cable Lateral Raise',60,4],
+['Cable Lateral Raise','3 x 12–15','Hareketi savurma, yan omuzu hisset.','Leaning Lateral Raise / Machine Lateral Raise',60,3],
+['Reverse Pec Deck','3 x 12–15','Arka omuzu sık, gövdeyi sabit tut.','Rear Delt Fly / Face Pull',60,3],
+['EZ Bar Curl','3 x 10–12','Dirsek sabit, kontrollü kaldır-indir.','Cable Curl / Dumbbell Curl',60,3],
+['Rope Hammer Curl','3 x 12–15','Nötr tutuşu koru, omuzları oynatma.','Dumbbell Hammer Curl / Cross-body Curl',60,3],
+['Triceps Pushdown','3 x 12','Dirsek sabit, aşağıda tricepsi sık.','Tek Kol Pushdown / Straight Bar Pushdown',60,3],
+['Overhead Triceps Extension','3 x 12–15','Baş üstünden kontrollü aç-kapat.','Dumbbell Overhead Extension / Skull Crusher',60,3],
+['Kardiyo','25–35 dk','Hız 4.5–5.5, eğim 5–8.','Bisiklet / Eliptik',0,1]
+]},
+{d:'Gün 5',t:'Opsiyonel Hafif Gün',s:'Süre: 60–80 dk',ex:[
+['Chest Press Machine','3 x 12','Ağırlığı kontrollü it, göğsü sık.','Push-up / Dumbbell Press',75,3],
+['Lat Pulldown','3 x 12','Barı göğse çek, omuzları kulaklara toplama.','One-arm Row / Band Pulldown',75,3],
+['Leg Press','3 x 12','Diz kontrolünü koru, tam savurma yapma.','Goblet Squat / Smith Squat',90,3],
+['Lateral Raise','3 x 15','Hafif kilo ile temiz tekrar yap.','Cable Lateral Raise / Machine Lateral Raise',60,3],
+['Cable Curl','2 x 12','Dirsek sabit, yavaş indir.','Dumbbell Curl / EZ Bar Curl',60,2],
+['Triceps Pushdown','2 x 12','Aşağıda kısa sık, omuz oynatma.','Overhead Extension / Tek Kol Pushdown',60,2],
+['Uzun Kardiyo','30–40 dk','Eğimli yürüyüş veya orta tempo bisiklet.','Eliptik / Kürek',0,1]
+]}
+];
+let mode=localStorage.mode||'4', day=+(localStorage.day||0), timers={};
+const $=id=>document.getElementById(id);function key(i,j){return 'sp_'+day+'_'+i+'_'+j}
+function renderDays(){let n=mode==='5'?5:4; $('days').innerHTML=''; DATA.slice(0,n).forEach((x,i)=>{let b=document.createElement('button');b.className='btn '+(i===day?'active':'');b.textContent=x.d+' • '+x.t;b.onclick=()=>{day=i;localStorage.day=day;render()};$('days').appendChild(b)});if(day>=n){day=0;localStorage.day=0}}
+function render(){renderDays();let cur=DATA[day];$('title').textContent=cur.d+' — '+cur.t;$('subtitle').textContent=cur.s;let html='';cur.ex.forEach((e,i)=>{let setBtns='';for(let j=0;j<e[5];j++){let done=localStorage.getItem(key(i,j))==='1';setBtns+=`<button class="setBtn ${done?'done':''}" onclick="toggleSet(${i},${j},${e[4]})">Set ${j+1}</button>`}html+=`<article class="card exercise"><div class="exHead"><div class="num">${i+1}</div><div><h3 class="exTitle">${e[0]}</h3><div class="meta"><span class="pill">${e[1]}</span><span class="pill">${e[4]?e[4]+' sn dinlenme':'kardiyo'}</span></div><div class="note">${e[2]}</div><div class="alts"><b>Alternatif:</b> ${e[3]}</div></div></div><div class="sets">${setBtns}</div><div class="timerBox" id="timer${i}"><div class="row"><div><div class="muted">Dinlenme</div><div class="timerTime" id="time${i}">${e[4]||0}</div></div><div class="timerBtns"><button class="btn" onclick="startTimer(${i},60)">60 sn</button><button class="btn" onclick="startTimer(${i},90)">90 sn</button><button class="btn" onclick="startTimer(${i},120)">120 sn</button><button class="btn" onclick="stopTimer(${i})">Durdur</button></div></div></div></article>`});$('list').innerHTML=html;updateProgress()}
+window.toggleSet=(i,j,sec)=>{let k=key(i,j);localStorage.setItem(k,localStorage.getItem(k)==='1'?'0':'1'); if(sec)startTimer(i,sec); render()}
+function updateProgress(){let cur=DATA[day],total=0,done=0;cur.ex.forEach((e,i)=>{for(let j=0;j<e[5];j++){total++; if(localStorage.getItem(key(i,j))==='1')done++}});let p=total?Math.round(done*100/total):0;$('pct').textContent=p+'%';$('bar').style.width=p+'%'}
+window.startTimer=(i,sec)=>{stopTimer(i);let left=sec;$('timer'+i).classList.add('on');$('time'+i).textContent=left;timers[i]=setInterval(()=>{left--;$('time'+i).textContent=left;if(left<=0){stopTimer(i);navigator.vibrate&&navigator.vibrate([200,100,200])}},1000)}
+window.stopTimer=i=>{if(timers[i])clearInterval(timers[i]);timers[i]=null;let box=$('timer'+i);if(box)box.classList.remove('on')}
+$('mode4').onclick=()=>{mode='4';localStorage.mode=mode;$('mode4').classList.add('active');$('mode5').classList.remove('active');render()};$('mode5').onclick=()=>{mode='5';localStorage.mode=mode;$('mode5').classList.add('active');$('mode4').classList.remove('active');render()};$('reset').onclick=()=>{DATA[day].ex.forEach((e,i)=>{for(let j=0;j<e[5];j++)localStorage.removeItem(key(i,j))});render()};if(mode==='5'){$('mode5').classList.add('active');$('mode4').classList.remove('active')}render();
+if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}))}
+</script>
+</body>
+</html>
