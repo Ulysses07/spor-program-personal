@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="108" fill="#0b4dbb"/>
+  <g fill="#fff">
+    <rect x="84" y="208" width="48" height="96" rx="16"/>
+    <rect x="140" y="230" width="54" height="52" rx="14"/>
+    <rect x="318" y="230" width="54" height="52" rx="14"/>
+    <rect x="380" y="208" width="48" height="96" rx="16"/>
+    <rect x="184" y="245" width="144" height="22" rx="11"/>
+    <text x="256" y="385" text-anchor="middle" font-family="Arial, sans-serif" font-size="58" font-weight="800">SPOR</text>
+  </g>
+</svg>
