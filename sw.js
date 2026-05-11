@@ -1,4 +1,4 @@
-const CACHE_NAME='spor-programi-v3';
+const CACHE_NAME='spor-programi-v4';
 const ASSETS=['./','./index.html','./manifest.webmanifest','./icon.svg'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS)));
